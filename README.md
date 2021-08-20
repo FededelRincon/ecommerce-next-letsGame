@@ -1,15 +1,19 @@
 ## Ecommerce con next.js + strapi + mongo
 
-**utilities:**
+*** utilities: ***
 - next
 - strapi
 - mongo Atlas
 
 - sass
 - Semantic UI
+- formik
+- Yup
+- react-toastify
+- jwt-decode
 
 
-**comandos para levantar servidor**
+*** comandos para levantar localhost ***
 - next
     npm run dev
 - strapi
