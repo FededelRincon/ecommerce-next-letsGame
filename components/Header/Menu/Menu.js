@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react';
 import Link from 'next/link';
+
 import BasicModal from '../../Modal/BasicModal';
 import Auth from '../../Auth';
+import useAuth from '../../../hooks/useAuth';
+import { getMeApi } from '../../../api/user';
+
 
 export default function MenuWeb() {
 
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState('Iniciar Session');
+    const [user, setUser] = useState(undefined);
+    const { auth, logout } = useAuth();
+
+    useEffect(() => {
+        (async () => {
+            const response = await getMeApi(logout);
+            setUser(response);
+        })()
+
+    }, [auth]);
 
     const onShowModal = () => setShowModal(true);
     const onCloseModal = () => setShowModal(false);
@@ -21,7 +35,15 @@ export default function MenuWeb() {
                     </Grid.Column>
 
                     <Grid.Column className="menu__right" width={10}>
-                        <MenuOptions onShowModal={onShowModal} />
+                        {
+                            user !== undefined && (
+                                <MenuOptions 
+                                    onShowModal={onShowModal} 
+                                    user={user} 
+                                    logout={logout} 
+                                />
+                            )
+                        }
                     </Grid.Column>
 
                 </Grid>
@@ -45,29 +67,62 @@ function MenuPlatforms() {
     return(
         <Menu>
             <Link href="/play-station">
-                    <a><Menu.Item> PlayStation </Menu.Item></a>
+                    <Menu.Item as="a"> PlayStation </Menu.Item>
             </Link>
 
             <Link href="/xbox">
-                    <a><Menu.Item> XBox </Menu.Item></a>
+                    <Menu.Item as="a"> XBox </Menu.Item>
             </Link>
 
             <Link href="/switch">
-                    <a><Menu.Item> Switch </Menu.Item></a>
+                    <Menu.Item as="a"> Switch </Menu.Item>
             </Link>
         </Menu>
     )
 }
 
 function MenuOptions(props){
-    const { onShowModal } = props;
+    const { onShowModal, user, logout } = props;
     
     return(
         <Menu>
-            <Menu.Item onClick={ onShowModal }>
-                <Icon name="user outline" />
-                Mi cuenta
-            </Menu.Item>
+            { user ? (
+                <>
+                    <Link href='/orders'>
+                        <Menu.Item as="a">
+                            <Icon name="game" />
+                            Mis pedidos
+                        </Menu.Item>
+                    </Link>
+                    <Link href='/wishlist'>
+                        <Menu.Item as="a">
+                            <Icon name="heart outline" />
+                            Deseados
+                        </Menu.Item>
+                    </Link>
+                    <Link href='/account'>
+                        <Menu.Item as="a">
+                            <Icon name="user outline" />
+                            {user.name} {user.lastname}
+                        </Menu.Item>
+                    </Link>
+                    <Link href='/cart'>
+                        <Menu.Item as="a" className="m-0">
+                            <Icon name="cart" />
+                        </Menu.Item>
+                    </Link>
+
+                    <Menu.Item onClick={logout} className="m-0">
+                        <Icon name="power off" />
+                    </Menu.Item>
+                </>    
+                ) : (
+                    <Menu.Item onClick={ onShowModal }>
+                        <Icon name="user outline" />
+                        Mi cuenta
+                    </Menu.Item>
+                )
+            }
         </Menu>
     )
 }

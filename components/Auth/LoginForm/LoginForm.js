@@ -24,7 +24,7 @@ export default function LoginForm(props) {
             if (response?.jwt) {
                 login(response.jwt);
                 onCloseModal();
-                toast.success('Ingreso correcto');
+                toast.info('Ud se ha logeado correctamente');
 
             } else {
                 toast.error('El email o la contraseña son incorrectos')
