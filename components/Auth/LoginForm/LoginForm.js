@@ -109,6 +109,6 @@ function initialValues() {
 function validationSchema() {
     return {
         identifier: Yup.string().email(true).required(true),
-        password: Yup.string().required(true)
+        password: Yup.string().min(6, true).max(50, true).required(true)
     }
 }

@@ -118,6 +118,6 @@ function validationSchema() {
         lastname: Yup.string().required(true),
         username: Yup.string().required(true),
         email: Yup.string().email(true).required(true),
-        password: Yup.string().required(true)
+        password: Yup.string().min(6, true).max(50, true).required(true)
     }
 }
