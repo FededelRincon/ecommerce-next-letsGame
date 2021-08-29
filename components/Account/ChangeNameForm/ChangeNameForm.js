@@ -11,7 +11,8 @@ export default function ChangeNameForm(props) {
     const [loading, setLoading] = useState(false);
 
     const formik = useFormik({
-        initialValues: initialValues(user.name, user.lastname),
+        // initialValues: initialValues(user.name, user.lastname),
+        initialValues: initialValues('', ''),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
             // console.log(formData)    //este formData tiene name y lastname

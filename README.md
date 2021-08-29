@@ -11,6 +11,7 @@
 - Yup
 - react-toastify
 - jwt-decode
+- lodash
 
 
 *** comandos para levantar localhost ***
