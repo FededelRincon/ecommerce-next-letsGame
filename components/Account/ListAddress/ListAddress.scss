@@ -1,0 +1,38 @@
+.list-address {
+    padding: 10px;
+
+    .address {
+        padding: 10px;
+        margin: 10px 0 10px 0;
+        border: 1px solid $border-grey-light;
+        border-radius: 15px;
+
+        p {
+            margin-bottom: 5px;
+
+            &:first-of-type {
+                font-weight: bold;
+                border-bottom: 1px solid $border-grey-light;
+                margin-bottom: 10px;
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+
+        .actions {
+            margin: 20px 0 0 0;
+            text-align: center;
+            
+            .ui.button.primary {
+                border-radius: 5px;
+                background-color: $primary;
+                color: $font-light;
+                margin: 0 20px 0 0;
+            }
+            .ui.button {
+                border-radius: 5px;
+                margin: 0 0 0 0;
+            }
+        }
+    }
+}
