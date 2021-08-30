@@ -55,10 +55,10 @@ export default function AddressForm(props) {
             user: auth.idUser
             // users_permissions_user: auth.idUser
         };
-        console.log(address);
+        // console.log(address);
         // const response = updateAddressApi(address._id, formDataTemp, logout);
         // const response = updateAddressApi(formDataTemp.user, formDataTemp, logout);
-        console.log(address.users_permissions_user._id)
+        // console.log(address.users_permissions_user._id)
         const response = updateAddressApi(address.users_permissions_user._id, formDataTemp, logout);
 
         ///////////////////////////////////////////////////////
