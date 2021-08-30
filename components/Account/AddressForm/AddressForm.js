@@ -3,7 +3,7 @@ import { Form, Button} from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../../hooks/useAuth';
-import { createAddressApi, deleteAddressApi } from '../../../api/address';
+import { createAddressApi, updateAddressApi } from '../../../api/address';
 import { toast } from 'react-toastify';
 
 
@@ -47,7 +47,7 @@ export default function AddressForm(props) {
         
     }
 
-    const updateAddress = async (formData) => {
+    const updateAddress = (formData) => {
         setLoading(true);
 
         const formDataTemp = {
@@ -55,10 +55,11 @@ export default function AddressForm(props) {
             user: auth.idUser
             // users_permissions_user: auth.idUser
         };
-        // Como deberia funcionar correctamente pero strapi no quiere....
+        console.log(address);
         // const response = updateAddressApi(address._id, formDataTemp, logout);
         // const response = updateAddressApi(formDataTemp.user, formDataTemp, logout);
-        // const response = updateAddressApi(address.users_permissions_user._id, formDataTemp, logout);
+        console.log(address.users_permissions_user._id)
+        const response = updateAddressApi(address.users_permissions_user._id, formDataTemp, logout);
 
         ///////////////////////////////////////////////////////
         // Solucion alternativa (poco ortodoxa) creo una nueva direccion y elimino la vieja
@@ -67,12 +68,12 @@ export default function AddressForm(props) {
             //2) si creo(tengo2direcciones) y no borro, osea tengo duplicidad pero no pierdo la original 
             //3) si creo y si borro, tendria lo mismo que la funcion update
         //crear nuevo
-        const responseCreate = await createAddressApi(formDataTemp, auth.idUser, logout);
+        // const responseCreate = await createAddressApi(formDataTemp, auth.idUser, logout);
         //elimino viejo
-        const responseDelete = await deleteAddressApi(address.id, logout)
-        
-        if (responseCreate && responseDelete) {
-            toast.info('Direccion Actualizada correctamente');
+        // const responseDelete = await deleteAddressApi(address.id, logout)
+
+        if (response) {
+            toast.warning('Sistema desabilitado momentaneamente, disculpe las molestias');
             setLoading(false);
         } else {
             formik.resetForm();
