@@ -3,7 +3,7 @@ import { Form, Button} from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../../hooks/useAuth';
-import { createAddressApi, updateAddressApi } from '../../../api/address';
+import { createAddressApi, deleteAddressApi } from '../../../api/address';
 import { toast } from 'react-toastify';
 
 
@@ -47,7 +47,7 @@ export default function AddressForm(props) {
         
     }
 
-    const updateAddress = (formData) => {
+    const updateAddress = async (formData) => {
         setLoading(true);
 
         const formDataTemp = {
@@ -55,14 +55,24 @@ export default function AddressForm(props) {
             user: auth.idUser
             // users_permissions_user: auth.idUser
         };
-        console.log(address);
+        // Como deberia funcionar correctamente pero strapi no quiere....
         // const response = updateAddressApi(address._id, formDataTemp, logout);
         // const response = updateAddressApi(formDataTemp.user, formDataTemp, logout);
-        console.log(address.users_permissions_user._id)
-        const response = updateAddressApi(address.users_permissions_user._id, formDataTemp, logout);
+        // const response = updateAddressApi(address.users_permissions_user._id, formDataTemp, logout);
 
-        if (response) {
-            toast.warning('Sistema desabilitado momentaneamente, disculpe las molestias');
+        ///////////////////////////////////////////////////////
+        // Solucion alternativa (poco ortodoxa) creo una nueva direccion y elimino la vieja
+            //si llegase a fallar: 
+            //1) no creo y no borro(queda todo igual), 
+            //2) si creo(tengo2direcciones) y no borro, osea tengo duplicidad pero no pierdo la original 
+            //3) si creo y si borro, tendria lo mismo que la funcion update
+        //crear nuevo
+        const responseCreate = await createAddressApi(formDataTemp, auth.idUser, logout);
+        //elimino viejo
+        const responseDelete = await deleteAddressApi(address.id, logout)
+        
+        if (responseCreate && responseDelete) {
+            toast.info('Direccion Actualizada correctamente');
             setLoading(false);
         } else {
             formik.resetForm();
