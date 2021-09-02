@@ -12,7 +12,10 @@
 - react-toastify
 - jwt-decode
 - lodash
-- query-string
+- ReactPlayer
+- react-slick
+- slick-carousel
+- moment
 
 
 *** comandos para levantar localhost ***
