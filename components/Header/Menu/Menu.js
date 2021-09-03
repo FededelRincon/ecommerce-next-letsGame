@@ -114,7 +114,7 @@ function MenuOptions(props){
                     <Link href='/wishlist'>
                         <Menu.Item as="a">
                             <Icon name="heart outline" />
-                            Deseados
+                            Wishlist
                         </Menu.Item>
                     </Link>
                     <Link href='/account'>

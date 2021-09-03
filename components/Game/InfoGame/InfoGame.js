@@ -13,11 +13,13 @@ export default function InfoGame(props) {
                     title={game.title}
                     screenshots={game.screenshots}
                 />
-                <ReactPlayer 
+
+                <p>Activar videos en infoGame.js</p>
+                {/* <ReactPlayer 
                     className="info-game__video" 
                     url={game.video} 
                     controls={true} 
-                />
+                /> */}
             </div>
         </>
     )
