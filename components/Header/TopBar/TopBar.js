@@ -1,5 +1,7 @@
 import { Container, Grid, Image, Input} from 'semantic-ui-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function TopBar() {
     return (
@@ -30,12 +32,26 @@ function Logo() {
 }
 
 function Search() {
+    const [searchStr, setSearchStr] = useState("");
+    const [load, setLoad] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (load) {
+            router.push(`/search?query=${searchStr}`);
+        }
+        setLoad(true);
+    }, [searchStr]);
+
     return(
         <Input 
             id="search-game"
             icon={{ name: "search" }}
             autoComplete="off"
             placeholder="Buscador..."
+            // value={searchStr}
+            value={router.query.query}
+            onChange={(_, data) => setSearchStr(data.value)}
         />
     )
 }
