@@ -10,6 +10,7 @@
 @import '../pages/games/platform.scss';
 @import '../pages/wishlist.scss';
 @import '../pages/search.scss';
+@import '../pages/cart.scss';
 
 
 // Components
@@ -27,6 +28,8 @@
 @import '../components/Game/TabsGame/TabsGame.scss';
 @import '../components/Game/InfoGame/InfoGame.scss';
 @import '../components/Game/CarouselScreenshots/CarouselScreenshots.scss';
+@import '../components/Cart/SummaryCart/SummaryCart.scss';
+@import '../components/Cart/AddressShipping/AddressShipping.scss';
 
 
 // Modal
