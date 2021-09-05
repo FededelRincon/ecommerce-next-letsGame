@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Container, Menu, Grid, Icon } from 'semantic-ui-react';
+import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react';
 import Link from 'next/link';
-import { map } from 'lodash'
+import { map} from 'lodash'
 import BasicModal from '../../Modal/BasicModal';
 import Auth from '../../Auth';
 import useAuth from '../../../hooks/useAuth';
 import { getMeApi } from '../../../api/user';
 import { getPlatformApi } from '../../../api/platform';
+import useCart from '../../../hooks/useCart';
+
 
 
 export default function MenuWeb() {
@@ -15,6 +17,7 @@ export default function MenuWeb() {
     const [titleModal, setTitleModal] = useState('Iniciar Session');
     const [user, setUser] = useState(undefined);
     const { auth, logout } = useAuth();
+
 
     useEffect(() => {
         (async () => {
@@ -76,17 +79,6 @@ function MenuPlatforms(props) {
     const { platforms } = props;
     return(
         <Menu>
-            {/* <Link href="/play-station">
-                    <Menu.Item as="a"> PlayStation </Menu.Item>
-            </Link>
-
-            <Link href="/xbox">
-                    <Menu.Item as="a"> XBox </Menu.Item>
-            </Link>
-
-            <Link href="/switch">
-                    <Menu.Item as="a"> Switch </Menu.Item>
-            </Link> */}
             {map(platforms, (platform) => (
                 <Link href={`/games/${platform.url}`} key={platform._id}>
                     <Menu.Item as="a" name={platform.url}> 
@@ -100,7 +92,8 @@ function MenuPlatforms(props) {
 
 function MenuOptions(props){
     const { onShowModal, user, logout } = props;
-    
+    const { productsCart } = useCart();
+
     return(
         <Menu>
             { user ? (
@@ -126,6 +119,16 @@ function MenuOptions(props){
                     <Link href='/cart'>
                         <Menu.Item as="a" className="m-0">
                             <Icon name="cart" />
+                                {productsCart > 0 && (
+                                    <Label 
+                                        color='grey'
+                                        size='tiny'
+                                        floating
+                                        circular
+                                    >
+                                        {productsCart}
+                                    </Label>
+                                )}
                         </Menu.Item>
                     </Link>
 
