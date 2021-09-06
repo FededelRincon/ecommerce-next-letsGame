@@ -16,8 +16,8 @@ export default function Payment(props) {
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
-        onSubmit: async (formData) => {
-            console.log(productsData)
+        onSubmit: (formData) => {
+            // console.log(productsData)
             setLoading(true);
             setTimeout(() => {
 
@@ -44,7 +44,7 @@ export default function Payment(props) {
                             setLoading(false);
                             formik.resetForm();
                             removeAllProductsCart();
-                            router.push('/orders')
+                            router.push('/');
                         }, 4000);
                     }
                   })

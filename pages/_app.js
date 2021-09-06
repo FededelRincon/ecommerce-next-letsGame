@@ -54,8 +54,7 @@ export default function MyApp({ Component, pageProps }) {
       setAuth(null);
       router.push('/');
       toast.info('Ud se ha deslogeado correctamente');
-      removeAllProductsCart();
-
+      cleanCart();
     }
   }
 
@@ -84,6 +83,11 @@ export default function MyApp({ Component, pageProps }) {
     setReloadCart(true);
   }
 
+  const cleanCart = () => {
+    removeAllProductsCart;
+    setTotalProductsCart(0);
+  }
+
 
 
   const cartData = useMemo(
@@ -92,7 +96,7 @@ export default function MyApp({ Component, pageProps }) {
       addProductCart: (product) => addProduct(product),
       getProductsCart: getProductsCart,
       removeProductCart: (product) => removeProduct(product),
-      removeAllProductsCart: removeAllProductsCart //poner esto cuando se cierre session, sino al user nuevo le entran los productos de otro
+      removeAllProductsCart: cleanCart //poner esto cuando se cierre session
     }), [totalProductsCart]
   );
 
