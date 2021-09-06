@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
 import { getToken, removeToken, setToken } from '../api/token';
-import { addProductCart, countProductsCart, getProductsCart, removeProductCart } from '../api/cart';
+import { addProductCart, countProductsCart, getProductsCart, removeProductCart, removeAllProductsCart } from '../api/cart';
 
 import '../scss/global.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,7 +53,8 @@ export default function MyApp({ Component, pageProps }) {
       removeToken();
       setAuth(null);
       router.push('/');
-      toast.info('Ud se ha deslogeado correctamente')
+      toast.info('Ud se ha deslogeado correctamente');
+      removeAllProductsCart();
 
     }
   }
@@ -91,7 +92,7 @@ export default function MyApp({ Component, pageProps }) {
       addProductCart: (product) => addProduct(product),
       getProductsCart: getProductsCart,
       removeProductCart: (product) => removeProduct(product),
-      removeAllProductsCart: () => null //poner esto cuando se cierre session, sino al user nuevo le entran los productos de otro
+      removeAllProductsCart: removeAllProductsCart //poner esto cuando se cierre session, sino al user nuevo le entran los productos de otro
     }), [totalProductsCart]
   );
 

@@ -16,6 +16,7 @@
 - react-slick
 - slick-carousel
 - moment
+- Sweetalert2
 
 
 *** comandos para levantar localhost ***

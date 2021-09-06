@@ -4,13 +4,15 @@ import { getGameByUrlApi } from '../api/game';
 import useCart from '../hooks/useCart';
 import SummaryCart from '../components/Cart/SummaryCart/SummaryCart';
 import AddressShipping from '../components/Cart/AddressShipping/AddressShipping';
+import Payment from '../components/Cart/Payment/Payment';
 
 
 export default function cart() {
+    const [totalPrice, setTotalPrice] = useState(0);
     const { getProductsCart } = useCart();
     const products = getProductsCart();
 
-    return !products ? <EmptyCart /> : <FullCart products={products} />
+    return !products ? <EmptyCart /> : <FullCart products={products} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
 
 }
 
@@ -23,7 +25,7 @@ function EmptyCart() {
 }
 
 function FullCart(props) {
-    const {products} = props;
+    const {products, totalPrice, setTotalPrice } = props;
     const [productsData, setProductsData] = useState(null);
     const [reloadCart, setReloadCart] = useState(false);
     const [address, setAddress] = useState(null);
@@ -43,8 +45,9 @@ function FullCart(props) {
 
     return (
         <BasicLayout className="empty-cart">
-            <SummaryCart productsData={productsData} reloadCart={reloadCart} setReloadCart={setReloadCart} />
+            <SummaryCart productsData={productsData} reloadCart={reloadCart} setReloadCart={setReloadCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
             <AddressShipping setAddress={setAddress} />
+            {address && <Payment productsData={productsData} totalPrice={totalPrice} />}
         </BasicLayout>
     )
 }

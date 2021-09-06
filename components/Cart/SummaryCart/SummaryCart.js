@@ -6,8 +6,8 @@ import { BASE_PATH } from '../../../utils/constants';
 
 
 export default function SummaryCart(props) {
-    const { productsData, setReloadCart, reloadCart } = props; //product es esto
-    const [totalPrice, setTotalPrice] = useState(0);
+    const { productsData, setReloadCart, reloadCart, totalPrice, setTotalPrice } = props; //product es esto
+    // const [totalPrice, setTotalPrice] = useState(0);
     const { removeProductCart } = useCart();
 
     useEffect(() => {
