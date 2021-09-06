@@ -96,6 +96,7 @@ function Addresses () {
                 <Icon 
                     name="plus" 
                     link 
+                    size="large"
                     onClick={() => openModal('Nueva direccion123')}
                 />
             </div>

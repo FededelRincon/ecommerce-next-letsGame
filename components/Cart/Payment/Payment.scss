@@ -1,0 +1,27 @@
+.payment {
+    padding: 10px;
+
+    .title {
+        width: max-content;
+        background-color: $background-dark-absolute;
+        color: $font-light;
+        padding: 5px 10px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .data {
+        background-color: $background-light;
+        box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.1) ;
+        padding: 15px;
+
+        .ui.form .ui.button.submit {
+            background-color: #057f9e;
+            color: #fff;
+            margin: 0;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}

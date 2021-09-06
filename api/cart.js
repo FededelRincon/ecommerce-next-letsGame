@@ -55,6 +55,9 @@ export function removeProductCart(product) {
     } else {
         localStorage.removeItem(CART);
     }
+}
 
 
+export function removeAllProductsCart() {
+    localStorage.removeItem(CART)
 }
