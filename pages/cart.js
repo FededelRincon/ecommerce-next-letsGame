@@ -5,6 +5,7 @@ import useCart from '../hooks/useCart';
 import SummaryCart from '../components/Cart/SummaryCart/SummaryCart';
 import AddressShipping from '../components/Cart/AddressShipping/AddressShipping';
 import Payment from '../components/Cart/Payment/Payment';
+import Seo from '../components/Seo';
 
 
 export default function cart() {
@@ -19,6 +20,7 @@ export default function cart() {
 function EmptyCart() {
     return (
         <BasicLayout className="empty-cart">
+            <Seo title={'Lets Game - Cart'} />
             <h2>No hay productos en el carrito</h2>
         </BasicLayout>
     )

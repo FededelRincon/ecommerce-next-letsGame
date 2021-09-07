@@ -12,6 +12,8 @@ import ChangePasswordForm from "../components/Account/ChangePasswordForm/ChangeP
 import BasicModal from '../components/Modal/BasicModal'
 import AddressForm from "../components/Account/AddressForm";
 import ListAddress from "../components/Account/ListAddress/ListAddress";
+import Seo from "../components/Seo";
+
 
 export default function Account() {
     const [ user, setUser ] = useState(undefined);
@@ -35,6 +37,9 @@ export default function Account() {
     return (
         <>
             <BasicLayout className="account" >
+                <Seo 
+                    title={'Lets Game - Account'}
+                />
                 <Configuration user={user} logout={logout} setReloadUser={setReloadUser} />    
                 <Addresses />
             </BasicLayout>

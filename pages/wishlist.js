@@ -5,7 +5,7 @@ import { size, forEach } from 'lodash'
 import useAuth from '../hooks/useAuth';
 import ListGames from '../components/ListGames';
 import { Loader } from 'semantic-ui-react';
-
+import Seo from '../components/Seo';
 
 
 export default function wishlist() {
@@ -31,6 +31,8 @@ export default function wishlist() {
     return (
         <>
             <BasicLayout className="wishlist">
+                <Seo title={'Lets Game - Wishlist'} />
+
                 <div className="wishlist__block">
                     <div className="title"> Lista de deseos </div>
 
