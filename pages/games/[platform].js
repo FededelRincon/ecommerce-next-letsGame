@@ -5,6 +5,8 @@ import BasicLayout from '../../layouts/BasicLayout/BasicLayout';
 import { size } from 'lodash';
 import { Loader } from 'semantic-ui-react';
 import ListGames from '../../components/ListGames';
+import Seo from '../../components/Seo';
+
 
 const limitPerPage = 8;
 
@@ -25,6 +27,10 @@ export default function Platform() {
     return (
         <>
             <BasicLayout className="platform">
+                <Seo 
+                    title={(query.platform).toUpperCase()}
+                    title={`Lets Game - ${(query.platform).toUpperCase()}`}
+                />
                 {!games && <Loader active>Cargando juegos...</Loader>}
                 {games && size(games) === 0 && (
                     <div>
