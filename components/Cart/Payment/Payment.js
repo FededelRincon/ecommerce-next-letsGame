@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import useCart from '../../../hooks/useCart';
 import { useRouter } from 'next/router'
+import { CART } from '../../../utils/constants';
 
 
 export default function Payment(props) {
@@ -42,8 +43,9 @@ export default function Payment(props) {
                                 'success'
                             )
                             setLoading(false);
-                            formik.resetForm();
+                            localStorage.removeItem(CART)
                             removeAllProductsCart();
+                            formik.resetForm();
                             router.push('/');
                         }, 4000);
                     }

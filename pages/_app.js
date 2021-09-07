@@ -96,7 +96,7 @@ export default function MyApp({ Component, pageProps }) {
       addProductCart: (product) => addProduct(product),
       getProductsCart: getProductsCart,
       removeProductCart: (product) => removeProduct(product),
-      removeAllProductsCart: cleanCart //poner esto cuando se cierre session
+      removeAllProductsCart: cleanCart
     }), [totalProductsCart]
   );
 
